@@ -1,0 +1,4 @@
+export const OPEN_ENTRY_WINDOW = 'OPEN_ENTRY_WINDOW';
+export const CLOSE_ENTRY_WINDOW = 'CLOSE_ENTRY_WINDOW';
+export const ADD_ENTRY = 'ADD_ENTRY';
+export const EDIT_ENTRY = 'EDIT_ENTRY';
