@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuidv1 from 'uuid';
 import { addEntry, editEntry, closeEntry } from '../actions';
-import '../../scss/EntryWindow.scss';
 
 const mapStateToProps = state => {
   return { entries: state.entries, entryWindow: state.entryWindow };
