@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/scss/EntryWindow.scss","webpack:///./src/scss/base.scss"],"names":[],"mappings":"AAAA;AACA;AACA,kBAAkB;;ACFlB;AACA;AACA,mBAAmB","file":"main.css","sourcesContent":["h1,\nh2 {\n  background: red; }\n","h1,\nh2 {\n  background: blue; }\n"],"sourceRoot":""}
