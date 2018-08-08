@@ -15,11 +15,25 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          process.env.NODE_ENV !== 'production'
-            ? 'style-loader'
-            : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
+          {
+            loader:
+              process.env.NODE_ENV !== 'production'
+                ? 'style-loader'
+                : MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [require('autoprefixer')()]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       }
     ]
