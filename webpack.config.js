@@ -2,9 +2,16 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+
+const PUBLIC_PATH = 'https://url.com/'; // alterar e manter a barra final
 
 module.exports = {
   entry: ['./src/js/index.js'],
+  output: {
+    filename: 'js/main.js'
+  },
   module: {
     rules: [
       {
@@ -22,7 +29,7 @@ module.exports = {
                 : MiniCssExtractPlugin.loader
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader?url=false'
           },
           {
             loader: 'postcss-loader',
@@ -30,8 +37,16 @@ module.exports = {
               ident: 'postcss',
               plugins: () => {
                 return [
-                  require('autoprefixer'),
-                  require('postcss-responsive-type')
+                  require('postcss-flexbugs-fixes'),
+                  require('autoprefixer')({
+                    browsers: [ // 'cover 99.5%' para maior crossbrowser (ex: versões mais antigas do safari)
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9',
+                    ],
+                    flexbox: 'no-2009',
+                  })
                 ];
               }
             }
@@ -40,6 +55,37 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
+      },
+      {
+        test: /\.(mp4)$/,
+        loader: 'file-loader',
+        options: {
+          name:
+            process.env.NODE_ENV !== 'production'
+              ? false
+              : '/video/[name]_[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name:
+            process.env.NODE_ENV !== 'production'
+              ? false
+              : '/img/[name]_[hash:7].[ext]'
+        }
+      },
+      {
+        test: /\.(png)$/,
+        loader: 'image-webpack-loader',
+        enforce: 'pre',
+        options: {
+          optipng: {
+            enabled: false,
+          }
+        }
       }
     ]
   },
@@ -49,8 +95,19 @@ module.exports = {
       filename: './index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.css'
-    })
+      filename: 'css/main.css'
+    }),
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json',
+    }),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'cache-id', // alterar
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'service-worker.js',
+      minify: true,
+      navigateFallback: PUBLIC_PATH + 'index.html',
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+    }),
   ],
   optimization: {
     minimizer: [
@@ -66,6 +123,9 @@ module.exports = {
       }),
       new OptimizeCssAssetsPlugin({})
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   },
   devtool: 'source-map'
 };
