@@ -1,25 +1,29 @@
 import {
-  OPEN_ENTRY_WINDOW,
-  CLOSE_ENTRY_WINDOW,
-  ADD_ENTRY,
-  EDIT_ENTRY
+  UPDATE_ACTIVE_PAGE,
+  TOGGLE_MENU,
+  HIDE_MAIN_COMPONENT,
+  GET_NEXT_SLIDE,
+  GET_PREVIOUS_SLIDE
 } from '../constants/action-types';
 
-export const openEntry = id => ({
-  type: OPEN_ENTRY_WINDOW,
-  payload: id
+export const updateActivePage = newActivePage => ({
+  type: UPDATE_ACTIVE_PAGE,
+  payload: newActivePage
 });
 
-export const closeEntry = () => ({
-  type: CLOSE_ENTRY_WINDOW
+export const toggleMenu = () => ({
+  type: TOGGLE_MENU
 });
 
-export const addEntry = entry => ({
-  type: ADD_ENTRY,
-  payload: entry
+export const hideMainComponent = bool => ({
+  type: HIDE_MAIN_COMPONENT,
+  payload: bool
 });
 
-export const editEntry = entry => ({
-  type: EDIT_ENTRY,
-  payload: entry
+export const getNextSlide = () => ({
+  type: GET_NEXT_SLIDE
+});
+
+export const getPreviousSlide = () => ({
+  type: GET_PREVIOUS_SLIDE
 });

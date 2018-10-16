@@ -1,36 +1,28 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import List from './List';
-import EntryWindow from './EntryWindow';
-import '../../scss/base.scss';
+import { Route, Switch } from 'react-router-dom';
 
-const mapStateToProps = state => {
-  return { entryWindow: state.entryWindow };
-};
+import Header from './Header';
+import Footer from './Footer';
+import Home from './Home';
+import About from './About';
+import Contact from './Contact';
+import Page404 from './Page404';
 
-class ConnectedApp extends Component {
-  _getEntryWindow() {
-    if (this.props.entryWindow.status) return <EntryWindow />;
-  }
-
+class App extends Component {
   render() {
     return (
       <Fragment>
-        <header>
-          <h1>Agrotis</h1>
-        </header>
-        <main>
-          <List />
-          {this._getEntryWindow()}
-        </main>
-        <div>
-          Situação salva com sucesso <button>Fechar</button>
-        </div>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route component={Page404} />
+        </Switch>
+        <Footer />
       </Fragment>
     );
   }
 }
-
-const App = connect(mapStateToProps)(ConnectedApp);
 
 export default App;

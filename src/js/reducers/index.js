@@ -1,50 +1,73 @@
 import {
-  OPEN_ENTRY_WINDOW,
-  CLOSE_ENTRY_WINDOW,
-  ADD_ENTRY,
-  EDIT_ENTRY
+  UPDATE_ACTIVE_PAGE,
+  TOGGLE_MENU,
+  HIDE_MAIN_COMPONENT,
+  GET_NEXT_SLIDE,
+  GET_PREVIOUS_SLIDE
 } from '../constants/action-types';
 
+import slides from '../constants/slides';
+
 const initialState = {
-  entries: [],
-  entryWindow: {
-    status: false,
-    id: false
-  }
+  activePage: '',
+  isMenuOpen: false,
+  hideMainComponent: false,
+  activeSlideIndex: 0,
+  activeSlide: slides[0]
 };
+
+const lastSlideIndex = slides.length - 1;
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case OPEN_ENTRY_WINDOW:
+    case UPDATE_ACTIVE_PAGE:
       return {
         ...state,
-        entryWindow: { status: true, id: action.payload }
+        activePage: action.payload
       };
-    case CLOSE_ENTRY_WINDOW:
+    case TOGGLE_MENU:
       return {
         ...state,
-        entryWindow: { status: false, id: false }
+        isMenuOpen: state.isMenuOpen ? false : true
       };
-    case ADD_ENTRY:
+    case HIDE_MAIN_COMPONENT:
       return {
         ...state,
-        entries: [...state.entries, action.payload]
+        hideMainComponent: action.payload
       };
-    case EDIT_ENTRY:
-      const entryToEdit = state.entries.filter(
-        entry => entry.id === action.payload.id
-      )[0];
-      const newEntries = state.entries.slice();
-      const { name, description, id } = action.payload;
-      newEntries[newEntries.indexOf(entryToEdit)] = {
-        name,
-        description,
-        id
-      };
+    case GET_NEXT_SLIDE:
+      if (state.activeSlideIndex < lastSlideIndex) {
+        const newActiveSlideIndex = state.activeSlideIndex + 1;
+        return {
+          ...state,
+          activeSlideIndex: newActiveSlideIndex,
+          activeSlide: slides[newActiveSlideIndex]
+        };
+      }
       return {
         ...state,
-        entries: newEntries
+        activeSlideIndex: 0,
+        activeSlide: slides[0]
       };
+    case GET_PREVIOUS_SLIDE:
+      if (state.activeSlideIndex > 0) {
+        const newActiveSlideIndex = state.activeSlideIndex - 1;
+        return {
+          ...state,
+          activeSlideIndex: newActiveSlideIndex,
+          activeSlide: slides[newActiveSlideIndex]
+        };
+      }
+      return {
+        ...state,
+        activeSlideIndex: lastSlideIndex,
+        activeSlide: slides[lastSlideIndex]
+      };
+    // case ADD_ENTRY:
+    //   return {
+    //     ...state,
+    //     entries: [...state.entries, action.payload]
+    //   };
     default:
       return state;
   }
