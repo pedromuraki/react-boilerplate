@@ -2,24 +2,83 @@
 @import 'node_modules/normalize.css/normalize';
 
 /* fonts */
-@import url('https://fonts.googleapis.com/css?family=Anton|Inconsolata');
+@import url('https://fonts.googleapis.com/css?family=Hind:400,700|Playfair+Display:400,700');
 
-@mixin inconsolata-b {
-  font-family: 'Inconsolata', monospace;
-  font-weight: 700;
+@mixin hind {
+  font-family: 'Hind', sans-serif;
   letter-spacing: 1px;
+  font-weight: 400;
+}
+
+@mixin hind-bold {
+  font-family: 'Hind', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+@mixin playfair {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+@mixin playfair-bold {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* fluid size mixin */
+@mixin fluid-size($props, $min-size, $max-size) {
+  $min-range: 320;
+  $max-range: 1280;
+  $rangeDiff: $max-range - $min-range;
+  $sizeDiff: $max-size - $min-size;
+  @each $prop in $props {
+    #{$prop}: calc(#{$min-size}px + #{$sizeDiff} * ((100vw - #{$min-range}px) / #{$rangeDiff}));
+    @media (max-width: #{$min-range}px) {
+      #{$prop}: #{$min-size}px;
+    }
+    @media (min-width: #{$max-range}px) {
+      #{$prop}: #{$max-size}px;
+    }
+  }
+}
+
+@mixin custom-range-fluid-size($props, $min-range, $max-range, $min-size, $max-size, $size-after-min-range, $size-after-max-range) {
+  $rangeDiff: $max-range - $min-range;
+  $sizeDiff: $max-size - $min-size;
+  @each $prop in $props {
+    #{$prop}: calc(#{$min-size}px + #{$sizeDiff} * ((100vw - #{$min-range}px) / #{$rangeDiff}));
+    @media (max-width: #{$min-range}px) {
+      #{$prop}: #{$size-after-min-range}px;
+    }
+    @media (min-width: #{$max-range}px) {
+      #{$prop}: #{$size-after-max-range}px;
+    }
+  }
+}
+
+/* helpers */
+.italic {
+  font-style: italic !important;
+}
+
+.bold {
+  font-weight: 700 !important;
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-center {
+  text-align: center !important;
 }
 
 /* color variables */
-$dark-gray: #2a2a2a;
-$default-gray: #757575;
-$default-orange: #f2644a;
-$videos: #e85353;
-$releases: #f2c750;
-$blog: #f2644a;
-$artists: #48c4ad;
-$events: #fa41a0;
-$gallery: #62ab2d;
+$cream: #fefefe;
+$salmon: #ea9e60;
 
 /* global settings & resets */
 * {
@@ -41,6 +100,10 @@ ol {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   padding: 0;
   border: 0;
@@ -50,25 +113,9 @@ button {
   cursor: pointer;
 }
 
-img {
+img,
+video {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-/* helpers */
-.italic {
-  font-style: italic !important;
-}
-
-.bold {
-  font-weight: 700 !important;
-}
-
-.uppercase {
-  text-transform: uppercase !important;
-}
-
-.text-center {
-  text-align: center !important;
 }
