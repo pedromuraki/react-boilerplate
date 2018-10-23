@@ -39,13 +39,14 @@ module.exports = {
                 return [
                   require('postcss-flexbugs-fixes'),
                   require('autoprefixer')({
-                    browsers: [ // 'cover 99.5%' para maior crossbrowser (ex: versões mais antigas do safari)
+                    browsers: [
+                      // 'cover 99.5%' para maior crossbrowser (ex: versões mais antigas do safari)
                       '>1%',
                       'last 4 versions',
                       'Firefox ESR',
-                      'not ie < 9',
+                      'not ie < 9'
                     ],
-                    flexbox: 'no-2009',
+                    flexbox: 'no-2009'
                   })
                 ];
               }
@@ -63,7 +64,7 @@ module.exports = {
           name:
             process.env.NODE_ENV !== 'production'
               ? false
-              : '/video/[name]_[hash:7].[ext]'
+              : 'video/[name]_[hash:7].[ext]'
         }
       },
       {
@@ -74,7 +75,7 @@ module.exports = {
           name:
             process.env.NODE_ENV !== 'production'
               ? false
-              : '/img/[name]_[hash:7].[ext]'
+              : 'img/[name]_[hash:7].[ext]'
         }
       },
       {
@@ -83,7 +84,7 @@ module.exports = {
         enforce: 'pre',
         options: {
           optipng: {
-            enabled: false,
+            enabled: false
           }
         }
       }
@@ -98,7 +99,7 @@ module.exports = {
       filename: 'css/main.css'
     }),
     new ManifestPlugin({
-      fileName: 'asset-manifest.json',
+      fileName: 'asset-manifest.json'
     }),
     new SWPrecacheWebpackPlugin({
       cacheId: 'cache-id', // alterar
@@ -106,8 +107,8 @@ module.exports = {
       filename: 'service-worker.js',
       minify: true,
       navigateFallback: PUBLIC_PATH + 'index.html',
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
+      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+    })
   ],
   optimization: {
     minimizer: [

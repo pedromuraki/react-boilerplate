@@ -6,7 +6,11 @@ import { Router } from 'react-router-dom';
 import history from './router/history';
 import App from './components/App';
 import '../scss/index.scss';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
+// registerServiceWorker();
+
+// const importAll = r => r.keys().forEach(r);
+// importAll(require.context('../img/', true, /\.(jpe?g|png|gif)$/));
 
 render(
   <Provider store={store}>
@@ -16,5 +20,3 @@ render(
   </Provider>,
   document.getElementById('app')
 );
-
-// registerServiceWorker(); deixar comentado enquanto está em desenvolvimento

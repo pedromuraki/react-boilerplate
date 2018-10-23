@@ -1,3 +1,1 @@
 - verificar questão do "url" no sass (ex: url do background-image)
-- verificar como jogar imagens de src para dist sem otimizar (ex: jpg's já otimizados)
-- verificar se necessário atualizar packages do npm
