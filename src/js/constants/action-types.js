@@ -1,5 +1,2 @@
-export const UPDATE_ACTIVE_PAGE = 'UPDATE_ACTIVE_PAGE';
-export const TOGGLE_MENU = 'TOGGLE_MENU';
-export const HIDE_MAIN_COMPONENT = 'HIDE_MAIN_COMPONENT';
-export const GET_NEXT_SLIDE = 'GET_NEXT_SLIDE';
-export const GET_PREVIOUS_SLIDE = 'GET_PREVIOUS_SLIDE';
+export const ACTION_1 = 'ACTION_1';
+export const ACTION_2 = 'ACTION_2';
