@@ -1,9 +1,10 @@
 /* REACT */
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const SearchForm = props => {
   return (
-    <form onSubmit={props.handleFormSubmit} className={props.className || ""}>
+    <form onSubmit={props.handleFormSubmit} className={props.className || ''}>
       <input
         type="text"
         placeholder="Search for..."
@@ -14,5 +15,13 @@ const SearchForm = props => {
     </form>
   )
 }
+
+SearchForm.propTypes = {
+  handleFormSubmit: PropTypes.func,
+  className: PropTypes.string,
+  inputValue: PropTypes.string,
+  handleInputValueChange: PropTypes.func
+}
+// https://www.npmjs.com/package/prop-types
 
 export default SearchForm

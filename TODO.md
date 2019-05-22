@@ -1,3 +1,2 @@
 - Criar sample de tests.
-- Criar sample de prop types.
 - Verificar questão do 'url' no sass (ex: url do background-image).

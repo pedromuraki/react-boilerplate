@@ -21,7 +21,6 @@ class Search extends React.Component {
   handleFormSubmit(e) {
     e.preventDefault()
 
-    // do something with the value...
     console.log(this.state.inputValue)
 
     this.setState({ inputValue: '' })
