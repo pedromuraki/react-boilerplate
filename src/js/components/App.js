@@ -1,23 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+/* REACT */
+import React from 'react'
 
-import Search from './Search';
+/* ROUTER */
+// import { Switch, Route, Link } from 'react-router-dom';
 
-class App extends Component {
+import Search from './Search'
+
+class App extends React.Component {
   render() {
     return (
-      <Fragment>
-        {/* <Header /> */}
-        <Switch>
-          {/* <Route exact path="/" component={Home} /> */}
-          {/* <Route path="/about" component={About} /> */}
-          {/* <Route path="/contact" component={Contact} /> */}
-          {/* <Route component={Page404} /> */}
-        </Switch>
-        {/* <Footer /> */}
-      </Fragment>
-    );
+      <>
+        <h1>App</h1>
+        <Search />
+      </>
+    )
   }
 }
 
-export default App;
+export default App

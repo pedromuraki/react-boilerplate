@@ -1,1 +1,1 @@
-- verificar questão do "url" no sass (ex: url do background-image)
+- Verificar questão do 'url' no sass (ex: url do background-image).

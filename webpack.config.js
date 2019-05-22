@@ -1,16 +1,17 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const ManifestPlugin = require('webpack-manifest-plugin');
+// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
-const PUBLIC_PATH = 'https://url.com/'; // alterar e manter a barra final
+// const PUBLIC_PATH = 'https://url.com/'; // alterar e manter a barra final
 
 module.exports = {
   entry: ['./src/js/index.js'],
   output: {
-    filename: 'js/main.js'
+    filename: 'js/main.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -98,17 +99,17 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/main.css'
     }),
-    new ManifestPlugin({
-      fileName: 'asset-manifest.json'
-    }),
-    new SWPrecacheWebpackPlugin({
-      cacheId: 'cache-id', // alterar
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      minify: true,
-      navigateFallback: PUBLIC_PATH + 'index.html',
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
-    })
+    // new ManifestPlugin({
+    //   fileName: 'asset-manifest.json'
+    // }),
+    // new SWPrecacheWebpackPlugin({
+    //   cacheId: 'cache-id', // alterar
+    //   dontCacheBustUrlsMatching: /\.\w{8}\./,
+    //   filename: 'service-worker.js',
+    //   minify: true,
+    //   navigateFallback: PUBLIC_PATH + 'index.html',
+    //   staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/]
+    // })
   ],
   optimization: {
     minimizer: [
@@ -129,4 +130,4 @@ module.exports = {
     historyApiFallback: true
   },
   devtool: 'source-map'
-};
+}

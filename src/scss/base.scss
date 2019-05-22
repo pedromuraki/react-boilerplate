@@ -1,7 +1,4 @@
-/* normalize */
-@import 'node_modules/normalize.css/normalize';
-
-/* fonts */
+/* FONTS */
 @import url('https://fonts.googleapis.com/css?family=Hind:400,700|Playfair+Display:400,700');
 
 @mixin hind {
@@ -28,7 +25,7 @@
   font-weight: 700;
 }
 
-/* fluid size mixin */
+/* FLUID SIZE MIXIN */
 @mixin fluid-size($props, $min-size, $max-size) {
   $min-range: 320;
   $max-range: 1280;
@@ -59,13 +56,17 @@
   }
 }
 
-/* helpers */
-.italic {
-  font-style: italic !important;
+/* HELPERS */
+.regular {
+  font-weight: 400 !important;
 }
 
 .bold {
   font-weight: 700 !important;
+}
+
+.italic {
+  font-style: italic !important;
 }
 
 .uppercase {
@@ -76,11 +77,10 @@
   text-align: center !important;
 }
 
-/* color variables */
-$cream: #fefefe;
-$salmon: #ea9e60;
+/* COLORS */
 
-/* global settings & resets */
+
+/* GLOBAL & RESETS */
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -98,6 +98,7 @@ figure,
 ul,
 ol {
   margin: 0;
+  padding: 0;
 }
 
 a {
