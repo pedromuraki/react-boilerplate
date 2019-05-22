@@ -6,15 +6,13 @@ import React from 'react'
 
 import Search from './Search'
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <h1>App</h1>
-        <Search />
-      </>
-    )
-  }
+const App = () => {
+  return (
+    <>
+      <h1>App</h1>
+      <Search />
+    </>
+  )
 }
 
 export default App

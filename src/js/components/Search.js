@@ -1,6 +1,9 @@
 /* REACT */
 import React from 'react'
 
+/* COMPONENTS */
+import SearchForm from './SearchForm'
+
 class Search extends React.Component {
   constructor() {
     super()
@@ -19,22 +22,19 @@ class Search extends React.Component {
     e.preventDefault()
 
     // do something with the value...
+    console.log(this.state.inputValue)
 
     this.setState({ inputValue: '' })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input
-          type="text"
-          placeholder="Search for..."
-          value={this.state.inputValue}
-          onChange={this.handleInputValueChange}
-        />
-        <button type="submit">Search</button>
-      </form>
-    );
+      <SearchForm
+        handleFormSubmit={this.handleFormSubmit}
+        inputValue={this.state.inputValue}
+        handleInputValueChange={this.handleInputValueChange}
+      />
+    )
   }
 }
 
